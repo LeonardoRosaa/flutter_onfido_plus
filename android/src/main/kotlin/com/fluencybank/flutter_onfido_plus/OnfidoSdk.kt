@@ -1,4 +1,4 @@
-package com.fluencybank.flutter_onfido
+package com.fluencybank.flutter_onfido_plus
 
 import android.app.Activity
 import com.onfido.android.sdk.capture.DocumentType

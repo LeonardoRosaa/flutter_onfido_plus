@@ -1,4 +1,4 @@
-package com.fluencybank.flutter_onfido
+package com.fluencybank.flutter_onfido_plus
 
 import android.content.Intent
 import com.onfido.android.sdk.capture.ExitCode

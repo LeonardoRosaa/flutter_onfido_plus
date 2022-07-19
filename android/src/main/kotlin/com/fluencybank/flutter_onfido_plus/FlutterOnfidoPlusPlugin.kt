@@ -1,4 +1,4 @@
-package com.fluencybank.flutter_onfido
+package com.fluencybank.flutter_onfido_plus
 
 import android.content.Context
 import androidx.annotation.NonNull
@@ -14,8 +14,8 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
 
-/** FlutterOnfidoPlugin */
-class FlutterOnfidoPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
+/** FlutterOnfidoPlusPlugin */
+class FlutterOnfidoPlusPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
   private lateinit var onfidoSdk: OnfidoSdk
   private lateinit var activityListener: OnfidoSdkActivityEventListener
   private lateinit var methodChannel: MethodChannel
@@ -38,7 +38,7 @@ class FlutterOnfidoPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      val instance = FlutterOnfidoPlugin()
+      val instance = FlutterOnfidoPlusPlugin()
       instance.onAttachedToEngine(registrar.context(), registrar.messenger())
       instance.onfidoSdk.setActivity(registrar.activity())
       registrar.addActivityResultListener(instance.activityListener)

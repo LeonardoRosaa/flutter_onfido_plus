@@ -2,12 +2,12 @@ import Flutter
 import UIKit
 
 @available(iOS 10.0, *)
-public class SwiftFlutterOnfidoPlugin: NSObject, FlutterPlugin {
+public class SwiftFlutterOnfidoPlusPlugin: NSObject, FlutterPlugin {
   private let onfidoSdk = OnfidoSdk()
     
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "flutter_onfido", binaryMessenger: registrar.messenger())
-    let instance = SwiftFlutterOnfidoPlugin()
+    let instance = SwiftFlutterOnfidoPlusPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

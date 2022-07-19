@@ -20,7 +20,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.fluencybank.flutter_onfido
-        pluginClass: FlutterOnfidoPlugin
+        package: com.fluencybank.flutter_onfido_plus
+        pluginClass: FlutterOnfidoPlusPlugin
       ios:
-        pluginClass: FlutterOnfidoPlugin
+        pluginClass: FlutterOnfidoPlusPlugin

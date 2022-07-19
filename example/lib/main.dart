@@ -14,7 +14,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> init() async {
     try {
       final exampleSdkToken =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.6eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
       final result = await FlutterOnfidoPlus.start(
         config: OnfidoConfig(
           sdkToken:

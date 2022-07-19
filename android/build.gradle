@@ -1,4 +1,4 @@
-group 'com.fluencybank.flutter_onfido'
+group 'com.fluencybank.flutter_onfido_plus'
 version '1.0-SNAPSHOT'
 
 buildscript {
