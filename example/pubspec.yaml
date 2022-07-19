@@ -18,7 +18,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_onfido:
+  flutter_onfido_plus:
     path: ../
 
 # For information on the generic Dart part of this file, see the

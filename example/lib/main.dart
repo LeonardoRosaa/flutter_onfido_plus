@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_onfido/flutter_onfido.dart';
+import 'package:flutter_onfido_plus/flutter_onfido_plus.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,7 +15,7 @@ class _MyAppState extends State<MyApp> {
     try {
       final exampleSdkToken =
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-      final result = await FlutterOnfido.start(
+      final result = await FlutterOnfidoPlus.start(
         config: OnfidoConfig(
           sdkToken:
               // PROVIDE SDK TOKEN YOU'VE GOT FROM YOUR BACKEND

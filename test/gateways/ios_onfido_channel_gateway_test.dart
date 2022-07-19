@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_onfido/data/gateways/onfido_channel_gateway.dart';
-import 'package:flutter_onfido/flutter_onfido.dart';
+import 'package:flutter_onfido_plus/data/gateways/onfido_channel_gateway.dart';
+import 'package:flutter_onfido_plus/flutter_onfido_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 class FakeOnfidoConfig extends Fake implements OnfidoConfig {
@@ -67,6 +67,8 @@ void main() {
             if (channel.method == 'start') {
               return onfidoResultJson;
             }
+            
+            return null;
           },
         );
       },

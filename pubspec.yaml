@@ -1,7 +1,7 @@
-name: flutter_onfido
+name: flutter_onfido_plus
 description: Onfido SDK plugin for Flutter. Package supports iOS and Android to verify users identity.
-version: 0.2.6
-homepage: https://github.com/geweald/flutter_onfido
+version: 0.0.1
+homepage: https://github.com/LeonardoRosaa/flutter_onfido_plus
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

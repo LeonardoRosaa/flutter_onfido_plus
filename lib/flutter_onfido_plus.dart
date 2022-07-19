@@ -1,11 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_onfido/data/gateways/onfido_channel_gateway.dart';
-import 'package:flutter_onfido/domain/services/onfido_channel_services.dart';
-import 'package:flutter_onfido/onfido_config.dart';
+import 'package:flutter_onfido_plus/data/gateways/onfido_channel_gateway.dart';
+import 'package:flutter_onfido_plus/domain/services/onfido_channel_services.dart';
+import 'package:flutter_onfido_plus/onfido_config.dart';
 
 export './enums.dart';
 export './onfido_config.dart';
@@ -19,7 +18,7 @@ final onfidoChannelService = OnfidoChannelServiceImpl(
   isAndroid: Platform.isAndroid,
 );
 
-class FlutterOnfido {
+class FlutterOnfidoPlus {
   static Future<OnfidoResult> start({
     required OnfidoConfig config,
     OnfidoIOSAppearance iosAppearance = const OnfidoIOSAppearance(),

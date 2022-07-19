@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_onfido/flutter_onfido.dart';
+import 'package:flutter_onfido_plus/flutter_onfido_plus.dart';
 
 abstract class OnfidoChannelGateway {
   Future<Object> start(OnfidoConfig config);

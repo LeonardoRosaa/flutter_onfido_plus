@@ -1,5 +1,5 @@
-import 'package:flutter_onfido/data/gateways/onfido_channel_gateway.dart';
-import 'package:flutter_onfido/flutter_onfido.dart';
+import 'package:flutter_onfido_plus/data/gateways/onfido_channel_gateway.dart';
+import 'package:flutter_onfido_plus/flutter_onfido_plus.dart';
 
 abstract class OnfidoChannelService {
   Future<OnfidoResult> start(
