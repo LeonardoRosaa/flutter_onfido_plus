@@ -2,8 +2,8 @@ PODS:
   - Flutter (1.0.0)
   - flutter_onfido_plus (0.0.1):
     - Flutter
-    - Onfido (= 23.0)
-  - Onfido (23.0.0)
+    - Onfido (= 25.1.1)
+  - Onfido (25.1.1)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -21,9 +21,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_onfido_plus: a3cf6226a5d40ab025f0cbe5e0e82735395a7993
-  Onfido: b0ab230686ef2056977853c91f0d59ed8e109638
+  flutter_onfido_plus: 223088c701fd93abb653e4c7a061ab8c0e4752e9
+  Onfido: 7b3fe080dc36420798d63a2a3b858718538aecdd
 
-PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
+PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 
 COCOAPODS: 1.11.3
