@@ -1,11 +1,11 @@
-# flutter_onfido
+# flutter_onfido_plus
 
 Onfido SDK flutter plugin.
 Inspired and based on Onfido [react-native-sdk](https://github.com/onfido/react-native-sdk)
 
-Android SDK: `9.3.1`
+Android SDK: `12.2.2`
 
-iOS SDK: `23.0`
+iOS SDK: `25.1.1`
 
 ## Project adjustments
 
@@ -125,3 +125,7 @@ Android and/or iOS.
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Acknowledgments
+
+This project is a fork from [flutter_onfido](https://github.com/geweald/flutter_onfido) and we did have acknowledgments for a great job of [@geweald](https://github.com/geweald) and the community that helps him.
