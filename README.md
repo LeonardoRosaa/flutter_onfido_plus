@@ -29,7 +29,7 @@ Update your iOS configuration files
 Change `ios/Podfile` to use version 10:
 
 ```ruby
-platform :ios, '10.0'
+platform :ios, '11.0'
 ```
 
 Add descriptions for camera and microphone permissions to `ios/YourProjectName/Info.plist`:
