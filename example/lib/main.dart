@@ -13,29 +13,28 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Future<void> init() async {
     try {
-      final exampleSdkToken =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.6eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
       final result = await FlutterOnfidoPlus.start(
         config: OnfidoConfig(
           sdkToken:
               // PROVIDE SDK TOKEN YOU'VE GOT FROM YOUR BACKEND
-              exampleSdkToken,
+              "token.expired-example",
           flowSteps: OnfidoFlowSteps(
-            welcome: true,
+            welcome: false,
             captureDocument: OnfidoCaptureDocumentStep(
-              countryCode: OnfidoCountryCode.USA,
+              countryCode: OnfidoCountryCode.ARG,
               docType: OnfidoDocumentType.GENERIC,
             ),
-            captureFace: OnfidoCaptureFaceStep(OnfidoCaptureType.PHOTO),
+            // captureFace: OnfidoCaptureFaceStep(OnfidoCaptureType.PHOTO),
           ),
         ),
-        iosAppearance: OnfidoIOSAppearance(
-          onfidoPrimaryColor: "#0043DF",
-        ),
+        iosAppearance: OnfidoIOSAppearance(),
       );
+      print('R\ne\ns\nu\nl\nt->\n');
       print(result);
+      print(result.toJson());
       // ASK YOUR BACKEND IF USER HAS PASSED VERIFICATION
     } catch (e) {
+      print('ERROR e =\n');
       print(e);
     }
   }

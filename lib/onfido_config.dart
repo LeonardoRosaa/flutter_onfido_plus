@@ -31,12 +31,12 @@ class OnfidoConfig {
 class OnfidoFlowSteps {
   final bool? welcome;
   final OnfidoCaptureDocumentStep captureDocument;
-  final OnfidoCaptureFaceStep captureFace;
+  final OnfidoCaptureFaceStep? captureFace;
 
   OnfidoFlowSteps({
     this.welcome,
     required this.captureDocument,
-    required this.captureFace,
+    this.captureFace,
   });
 
   factory OnfidoFlowSteps.fromJson(Map<String, dynamic> json) =>
