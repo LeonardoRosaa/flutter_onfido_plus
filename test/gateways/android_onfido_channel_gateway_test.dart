@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 class FakeOnfidoConfig extends Fake implements OnfidoConfig {
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       "sdkToken": "SDK_TOKEN",
       "flowSteps": {

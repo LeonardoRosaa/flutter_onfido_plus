@@ -35,6 +35,6 @@ class OnfidoChannelServiceImpl implements OnfidoChannelService {
       );
     }
 
-    return OnfidoResult.fromJson(onfidoResult);
+    return OnfidoResult.fromMap(onfidoResult);
   }
 }

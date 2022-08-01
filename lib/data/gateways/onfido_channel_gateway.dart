@@ -15,7 +15,7 @@ class AndroidOnfidoChannelGateway implements OnfidoChannelGateway {
   @override
   Future<Map<String, dynamic>> start(OnfidoConfig config) async {
     final result = await channel.invokeMethod('start', {
-      'config': config.toJson(),
+      'config': config.toMap(),
     });
     
     return jsonDecode(jsonEncode(result));
@@ -33,8 +33,8 @@ class IOSOnfidoChannelGateway implements OnfidoChannelGateway {
     OnfidoIOSAppearance appearance = const OnfidoIOSAppearance(),
   }) async {
     final result = await channel.invokeMethod('start', {
-      "config": config.toJson(),
-      "appearance": appearance.toJson(),
+      "config": config.toMap(),
+      "appearance": appearance.toMap(),
     });
 
     return jsonDecode(jsonEncode(result));

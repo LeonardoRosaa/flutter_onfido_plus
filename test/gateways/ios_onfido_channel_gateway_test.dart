@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 class FakeOnfidoConfig extends Fake implements OnfidoConfig {
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       "sdkToken": "SDK_TOKEN",
       "flowSteps": {
@@ -24,7 +24,7 @@ class FakeOnfidoConfig extends Fake implements OnfidoConfig {
 
 class FakeOnfidoIOSApparence extends Fake implements OnfidoIOSAppearance {
   @override
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       "onfidoPrimaryColor": "#0043DF",
       "onfidoIosSupportDarkMode": false,
