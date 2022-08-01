@@ -106,19 +106,19 @@ class OnfidoCaptureDocumentStep {
 }
 
 class OnfidoCaptureFaceStep {
-  final OnfidoCaptureType? type;
+  final OnfidoCaptureType type;
 
   OnfidoCaptureFaceStep(this.type);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'type': type?.name,
+      'type': type.name,
     };
   }
 
   factory OnfidoCaptureFaceStep.fromMap(Map<String, dynamic> map) {
     return OnfidoCaptureFaceStep(
-      map['type'] != null ? OnfidoCaptureType.values.byName(map['type']) : null,
+      OnfidoCaptureType.values.byName(map['type']),
     );
   }
 

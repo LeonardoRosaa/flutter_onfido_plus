@@ -23,14 +23,15 @@ public class AppearancePublic: NSObject {
 public func loadAppearance(config: NSDictionary) throws -> AppearancePublic? {
     
     if let jsonResult = config as? Dictionary<String, AnyObject> {
+        let onfidoPrimaryButtonTextColor = jsonResult["onfidoPrimaryButtonTextColor"] as? String
+        let onfidoPrimaryButtonColorPressed = jsonResult["onfidoPrimaryButtonColorPressed"] as? String;
+        let onfidoIosSupportDarkMode = jsonResult["onfidoIosSupportDarkMode"] as? Bool;
+        
         let primaryColor: UIColor = (jsonResult["onfidoPrimaryColor"] == nil)
         ? UIColor.primaryColor : UIColor.from(hex: jsonResult["onfidoPrimaryColor"] as! String)
-        let primaryTitleColor: UIColor = (jsonResult["onfidoPrimaryButtonTextColor"] == nil)
-        ? UIColor.white : UIColor.from(hex: jsonResult["onfidoPrimaryButtonTextColor"] as! String)
-        let primaryBackgroundPressedColor: UIColor = (jsonResult["onfidoPrimaryButtonColorPressed"] == nil)
-        ? UIColor.primaryButtonColorPressed : UIColor.from(hex: jsonResult["onfidoPrimaryButtonColorPressed"] as! String)
-        let supportDarkMode: Bool = (jsonResult["onfidoIosSupportDarkMode"] == nil)
-        ? true : jsonResult["onfidoIosSupportDarkMode"] as! Bool
+        let primaryTitleColor = onfidoPrimaryButtonTextColor == nil ? UIColor.white : UIColor.from(hex: onfidoPrimaryButtonTextColor!)
+        let primaryBackgroundPressedColor = onfidoPrimaryButtonColorPressed == nil ? UIColor.primaryButtonColorPressed : UIColor.from(hex: onfidoPrimaryButtonColorPressed!)
+        let supportDarkMode = onfidoIosSupportDarkMode ?? false
         
         
         let appearancePublic = AppearancePublic(
@@ -107,15 +108,23 @@ public func buildOnfidoConfig(config:NSDictionary, appearance: Appearance) throw
         onfidoConfig = onfidoConfig.withDocumentStep()
     }
     
-    if let faceVariant = captureFace?["type"] as? String {
-        if faceVariant == "VIDEO" {
+    if captureFace != nil {
+        let captureFaceType = captureFace?["type"] as! String
+        
+        NSLog("This configuration has capture face as \(captureFaceType)")
+        
+        if captureFaceType == "VIDEO" {
             onfidoConfig = onfidoConfig.withFaceStep(ofVariant: .video(withConfiguration: VideoStepConfiguration(showIntroVideo: true, manualLivenessCapture: false)))
-        } else if faceVariant == "PHOTO" {
+        } else if captureFaceType == "PHOTO" {
             onfidoConfig = onfidoConfig.withFaceStep(ofVariant: .photo(withConfiguration: nil))
         } else {
             throw NSError(domain: "Invalid or unsupported face variant", code: 0)
         }
+    } else {
+        NSLog("This configuration not has capture face")
     }
+    
+    
     return onfidoConfig;
 }
 
@@ -165,9 +174,11 @@ class OnfidoSdk: NSObject {
             let onfidoRun = try onfidoFlow.run()
             UIApplication.shared.windows.first?.rootViewController?.present(onfidoRun, animated: true)
         } catch let error as NSError {
+            print(error)
             result(FlutterError(code: "error", message: error.domain, details: nil))
             return;
-        } catch {
+        } catch let error {
+            print(error)
             result(FlutterError(code: "error", message: "Error running Onfido SDK", details: nil))
             return;
         }
