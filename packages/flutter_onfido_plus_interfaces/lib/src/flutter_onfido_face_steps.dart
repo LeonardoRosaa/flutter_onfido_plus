@@ -1,0 +1,4 @@
+enum FlutterOnfidoFaceSteps {
+  video,
+  photo,
+}

@@ -1,0 +1,4 @@
+enum FlutterOnfidoDocumentFormat {
+  card,
+  folded,
+}
