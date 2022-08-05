@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_onfido_plus_interfaces/flutter_onfido_plus_interfaces.dart';
+import 'package:flutter_onfido_plus_platform_interfaces/flutter_onfido_plus_platform_interfaces.dart';
 
 abstract class FlutterOnfidoFaceStep extends Equatable {
   const FlutterOnfidoFaceStep({

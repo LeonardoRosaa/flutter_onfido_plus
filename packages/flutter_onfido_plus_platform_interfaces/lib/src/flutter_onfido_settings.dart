@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_onfido_plus_interfaces/flutter_onfido_plus_interfaces.dart';
-import 'package:flutter_onfido_plus_interfaces/src/flutter_onfido_appearence.dart';
+import 'package:flutter_onfido_plus_platform_interfaces/flutter_onfido_plus_platform_interfaces.dart';
 
 class FlutterOnfidoSettings extends Equatable {
   const FlutterOnfidoSettings({
@@ -11,6 +10,7 @@ class FlutterOnfidoSettings extends Equatable {
     this.appearence,
   });
 
+  /// The token is necessary to initialize the SDK. 
   final String token;
 
   final List<FlutterOnfidoStep> steps;
@@ -18,7 +18,7 @@ class FlutterOnfidoSettings extends Equatable {
   final FlutterOnfidoFaceStep? faceStep;
 
   /// The appearance field works just for IOS platform, therefore, 
-  /// Android platform needs to read the official documentation: 
+  /// Android platform needs to check out the official documentation: 
   /// https://documentation.onfido.com/sdk/android/#ui-customization
   final FlutterOnfidoAppearence? appearence;
 
@@ -27,6 +27,7 @@ class FlutterOnfidoSettings extends Equatable {
       'token': token,
       'steps': steps.map((x) => x.toMap()).toList(),
       'faceStep': faceStep?.toMap(),
+      'appearence': appearence?.toMap(),
     };
   }
 

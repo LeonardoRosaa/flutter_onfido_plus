@@ -1,4 +1,4 @@
-import 'package:flutter_onfido_plus_interfaces/flutter_onfido_plus_interfaces.dart';
+import 'package:flutter_onfido_plus_platform_interfaces/flutter_onfido_plus_platform_interfaces.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
