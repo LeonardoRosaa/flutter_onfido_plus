@@ -1,7 +1,6 @@
-name: flutter_onfido_plus_android
+name: flutter_onfido_plus
 description: A new Flutter plugin project.
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -10,9 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.1.2
+  plugin_platform_interface: ^2.0.2
   flutter_onfido_plus_platform_interfaces:
     path: ../flutter_onfido_plus_platform_interfaces
+  flutter_onfido_plus_android:
+    path: ../flutter_onfido_plus_android  
 
 dev_dependencies:
   flutter_test:
@@ -23,6 +24,4 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.cbool.flutter_onfido_plus_android
-        pluginClass: FlutterOnfidoPlusAndroidPlugin
-        dartPluginClass: FlutterOnfidoPlusAndroid
+        default_package: flutter_onfido_plus_android
