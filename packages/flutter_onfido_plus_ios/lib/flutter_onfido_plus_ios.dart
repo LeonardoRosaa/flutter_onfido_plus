@@ -1,0 +1,1 @@
+export 'flutter_onfido_plus_ios_method_channel.dart';

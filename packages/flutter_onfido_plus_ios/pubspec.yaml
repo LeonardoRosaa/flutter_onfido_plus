@@ -1,6 +1,7 @@
-name: flutter_onfido_plus
+name: flutter_onfido_plus_ios
 description: A new Flutter plugin project.
 version: 0.0.1
+homepage:
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -12,10 +13,6 @@ dependencies:
   plugin_platform_interface: ^2.0.2
   flutter_onfido_plus_platform_interfaces:
     path: ../flutter_onfido_plus_platform_interfaces
-  flutter_onfido_plus_android:
-    path: ../flutter_onfido_plus_android  
-  flutter_onfido_plus_ios:
-    path: ../flutter_onfido_plus_ios    
 
 dev_dependencies:
   flutter_test:
@@ -25,7 +22,6 @@ dev_dependencies:
 flutter:
   plugin:
     platforms:
-      android:
-        default_package: flutter_onfido_plus_android
       ios:
-        default_package: flutter_onfido_plus_ios  
+        pluginClass: FlutterOnfidoPlusIosPlugin
+        dartPluginClass: FlutterOnfidoPlusIos

@@ -90,6 +90,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter_onfido_plus_ios:
+    dependency: transitive
+    description:
+      path: "../../flutter_onfido_plus_ios"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter_onfido_plus_platform_interfaces:
     dependency: transitive
     description:
