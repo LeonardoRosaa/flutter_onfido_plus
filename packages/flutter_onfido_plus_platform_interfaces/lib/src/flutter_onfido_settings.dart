@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 import 'package:flutter_onfido_plus_platform_interfaces/flutter_onfido_plus_platform_interfaces.dart';
@@ -21,6 +23,8 @@ class FlutterOnfidoSettings extends Equatable {
   /// Android platform needs to check out the official documentation: 
   /// https://documentation.onfido.com/sdk/android/#ui-customization
   final FlutterOnfidoAppearence? appearence;
+
+  String toJson() => jsonEncode(toMap());
 
   Map<String, dynamic> toMap() {
     return {

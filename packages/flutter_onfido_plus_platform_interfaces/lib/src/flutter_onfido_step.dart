@@ -39,14 +39,12 @@ abstract class FlutterOnfidoWithCountryStep extends FlutterOnfidoStep {
 }
 
 abstract class FlutterOnfidoWithCountryAndDocumentStep
-    extends FlutterOnfidoStep {
+    extends FlutterOnfidoWithCountryStep {
   const FlutterOnfidoWithCountryAndDocumentStep({
-    required this.country,
     required this.format,
     required super.type,
+    required super.country,
   });
-
-  final Country country;
 
   final FlutterOnfidoDocumentFormat format;
 

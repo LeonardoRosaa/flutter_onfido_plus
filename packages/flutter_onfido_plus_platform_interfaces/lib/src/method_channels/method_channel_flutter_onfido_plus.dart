@@ -10,7 +10,7 @@ class MethodChannelFlutterOnfidoPlus extends FlutterOnfidoPlusPlatform {
   Future initialize(FlutterOnfidoSettings settings) {
     return _channel.invokeMethod(
       'initialize',
-      settings.toMap(),
+      settings.toJson(),
     );
   }
 }
