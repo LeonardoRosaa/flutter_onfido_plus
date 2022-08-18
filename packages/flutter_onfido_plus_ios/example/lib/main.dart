@@ -29,7 +29,10 @@ class _MyAppState extends State<MyApp> {
           format: FlutterOnfidoDocumentFormat.card
         ),
       ],
-      faceStep: VideoFaceStep(intro: true)
+      faceStep: VideoFaceStep(intro: true),
+      appearence: FlutterOnfidoAppearence(
+        primaryColor: Colors.black,
+      )
     );
     channel.initialize(settings);
   }

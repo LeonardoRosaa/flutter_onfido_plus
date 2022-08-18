@@ -11,19 +11,16 @@ public class SwiftFlutterOnfidoPlusIosPlugin: NSObject, FlutterPlugin {
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         if let arguments = call.arguments as? Map {
-            let data = try! FlutterOnfidoSettings.fromMap(data: arguments)
-            print(data.token)
-            print(data.steps)
-            
-            for i in data.steps {
-                print("Country \(i.country)")
-                print("Format \(i.format)")
+            do {
+                let data = try FlutterOnfidoSettings.fromMap(data: arguments)
                 
+                
+            } catch {
+                NSLog("Failure to try from map the FlutterOnfidoSettings \(error)")
+                result(FlutterError(code: "settingsFromMap", message: "Failure on try parse to map the arguments parameters", details: error))
             }
         } else {
-            NSLog("The arguments is not Map typed")
+            result(FlutterError(code: "argumentsIsNotMap", message: "The arguments parameters is not a Map type", details: nil))
         }
-        
-        result("iOS " + UIDevice.current.systemVersion)
     }
 }

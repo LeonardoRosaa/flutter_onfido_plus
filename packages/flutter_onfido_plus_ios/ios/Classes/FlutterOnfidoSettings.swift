@@ -1,9 +1,9 @@
 import Foundation
 
-typealias Map = Dictionary<String, Any?>
+public typealias Map = Dictionary<String, Any?>
 
-class FlutterOnfidoSettings : Codable {
-    
+class FlutterOnfidoSettings : Codable, Equatable {
+   
     final let token: String
     
     final let steps: [FlutterOnfidoStep]
@@ -14,7 +14,7 @@ class FlutterOnfidoSettings : Codable {
         case token, steps, faceStep
     }
     
-    static func fromMap(data: Map) throws -> FlutterOnfidoSettings {
+    static public func fromMap(data: Map) throws -> FlutterOnfidoSettings {
         let decoder = JSONDecoder()
         let json = try JSONSerialization.data(withJSONObject: data)
         
@@ -27,6 +27,16 @@ class FlutterOnfidoSettings : Codable {
         
         self.token = try container.decode(String.self, forKey: .token)
         self.steps = try FlutterOnfidoStep.build(nested: &steps)
-        self.faceStep = try container.decode(FlutterOnfidoFaceStep?.self, forKey: .faceStep)
+        self.faceStep = try container.decodeIfPresent(FlutterOnfidoFaceStep.self, forKey: .faceStep)
+    }
+    
+    init(token: String, steps: [FlutterOnfidoStep], faceStep: FlutterOnfidoFaceStep? = nil) {
+        self.token = token
+        self.steps = steps
+        self.faceStep = faceStep
+    }
+    
+    static func == (lhs: FlutterOnfidoSettings, rhs: FlutterOnfidoSettings) -> Bool {
+        return lhs.token == rhs.token && lhs.steps == rhs.steps && lhs.faceStep == rhs.faceStep
     }
 }

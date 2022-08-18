@@ -1,6 +1,6 @@
 import Foundation
 
-enum FlutterOnfidoDocumentFormat : String, Codable {
+public enum FlutterOnfidoDocumentFormat : String, Codable {
   case card,
   folded
 }

@@ -1,5 +1,7 @@
 import Foundation
 
+typealias KeyedStep = KeyedDecodingContainer<FlutterOnfidoStep.CodingKeys>
+
 enum FlutterOnfidoSteps : String, Codable {
     case welcome,
          passport,
@@ -11,25 +13,32 @@ enum FlutterOnfidoSteps : String, Codable {
          generic
 }
 
-class FlutterOnfidoStep : Codable {
-    public var type: FlutterOnfidoSteps
+class FlutterOnfidoStep : Codable, Equatable {
+    final var type: FlutterOnfidoSteps
     
-    public var country: Country?
+    final var country: Country?
     
-    public var format: FlutterOnfidoDocumentFormat?
+    final var format: FlutterOnfidoDocumentFormat?
     
     public enum CodingKeys: String, CodingKey {
         case type, country, format
     }
     
-    required init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(FlutterOnfidoSteps.self, forKey: .type)
         
     }
     
-    init(container: KeyedDecodingContainer<CodingKeys>) throws {
+    init(container: KeyedStep) throws {
         type = try container.decode(FlutterOnfidoSteps.self, forKey: .type)
+    }
+    
+    
+    init(type: FlutterOnfidoSteps, country: Country? = nil, format: FlutterOnfidoDocumentFormat? = nil) {
+        self.type = type
+        self.country = country
+        self.format = format
     }
     
     static func build(nested: inout UnkeyedDecodingContainer) throws -> [FlutterOnfidoStep] {
@@ -61,22 +70,36 @@ class FlutterOnfidoStep : Codable {
         
         return steps
     }
+    
+    static func == (lhs: FlutterOnfidoStep, rhs: FlutterOnfidoStep) -> Bool {
+        return lhs.type == rhs.type && lhs.country == rhs.country && lhs.format == rhs.format
+    }
 }
 
 class FlutterOnfidoWithCountryStep : FlutterOnfidoStep {
+    
+    override init(type: FlutterOnfidoSteps, country: Country? = nil, format: FlutterOnfidoDocumentFormat? = nil) {
+        super.init(type: type, country: country)
+    }
+    
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.country = try container.decode(Country.self, forKey: .country)
     }
     
-    override init(container: KeyedDecodingContainer<FlutterOnfidoStep.CodingKeys>) throws {
+    override init(container: KeyedStep) throws {
         try super.init(container: container)
         country = try container.decode(Country?.self, forKey: .country)
     }
 }
 
 class FlutterOnfidoWithCountryAndDocumentStep : FlutterOnfidoStep {
+    
+    override init(type: FlutterOnfidoSteps, country: Country? = nil, format: FlutterOnfidoDocumentFormat? = nil) {
+        super.init(type: type, country: country, format: format)
+    }
+    
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -84,25 +107,122 @@ class FlutterOnfidoWithCountryAndDocumentStep : FlutterOnfidoStep {
         self.format = try container.decode(FlutterOnfidoDocumentFormat.self, forKey: .format)
     }
     
-    override init(container: KeyedDecodingContainer<FlutterOnfidoStep.CodingKeys>) throws {
+    override init(container: KeyedStep) throws {
         try super.init(container: container)
         country = try container.decode(Country.self, forKey: .country)
         format = try container.decode(FlutterOnfidoDocumentFormat.self, forKey: .format)
     }
 }
 
-class WelcomeStep : FlutterOnfidoStep {}
+class WelcomeStep : FlutterOnfidoStep {
+    
+    init() {
+        super.init(type: .welcome)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
 
-class PassportConfigurationStep : FlutterOnfidoStep {}
+class PassportConfigurationStep : FlutterOnfidoStep {
+    init() {
+        super.init(type: .passport)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
 
-class ResidencePermitConfigurationStep : FlutterOnfidoWithCountryStep {}
+class ResidencePermitConfigurationStep : FlutterOnfidoWithCountryStep {
+    init(country: Country) {
+        super.init(type: .residencePermit, country: country)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
 
-class VisaConfigurationStep : FlutterOnfidoWithCountryStep {}
+class VisaConfigurationStep : FlutterOnfidoWithCountryStep {
+    init(country: Country) {
+        super.init(type: .visa, country: country)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
 
-class WorkPermitConfigurationStep : FlutterOnfidoWithCountryStep {}
+class WorkPermitConfigurationStep : FlutterOnfidoWithCountryStep {
+    init(country: Country) {
+        super.init(type: .workPermit, country: country)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
 
-class GenericConfigurationStep : FlutterOnfidoWithCountryStep {}
+class GenericConfigurationStep : FlutterOnfidoWithCountryStep {
+    init(country: Country) {
+        super.init(type: .generic, country: country)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
 
-class NationalIdentityConfigurationStep : FlutterOnfidoWithCountryAndDocumentStep {}
+class NationalIdentityConfigurationStep : FlutterOnfidoWithCountryAndDocumentStep {
+    init(country: Country, format: FlutterOnfidoDocumentFormat) {
+        super.init(type: .nationalIdentity, country: country, format: format)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
 
-class DrivingLicenseConfigurationStep : FlutterOnfidoWithCountryAndDocumentStep {}
+class DrivingLicenseConfigurationStep : FlutterOnfidoWithCountryAndDocumentStep {
+    init(country: Country, format: FlutterOnfidoDocumentFormat) {
+        super.init(type: .drivingLicense, country: country, format: format)
+    }
+    
+    override init(container: KeyedStep) throws {
+        try super.init(container: container)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+    }
+}
