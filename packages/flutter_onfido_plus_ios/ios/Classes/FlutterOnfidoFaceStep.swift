@@ -1,4 +1,5 @@
 import Foundation
+import Onfido
 
 public enum FlutterOnfidoFaceSteps : String, Codable {
     case video,
@@ -17,5 +18,15 @@ public class FlutterOnfidoFaceStep : Codable, Equatable {
     
     public static func == (lhs: FlutterOnfidoFaceStep, rhs: FlutterOnfidoFaceStep) -> Bool {
         return lhs.type == rhs.type && lhs.intro == rhs.intro
+    }
+    
+    func builder(builder: Onfido.OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        switch type {
+        case .video:
+            return builder.withFaceStep(ofVariant: .video(withConfiguration: VideoStepConfiguration(showIntroVideo: intro, manualLivenessCapture: false)))
+        case .photo:
+            return builder.withFaceStep(ofVariant: .photo(withConfiguration: PhotoStepConfiguration(showSelfieIntroScreen: intro)))
+        }
+        
     }
 }

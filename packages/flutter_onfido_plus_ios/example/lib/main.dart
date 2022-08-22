@@ -15,10 +15,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  late final FlutterOnfidoPlusIos flutterOnfidoPlus;
+
+  @override
+  void initState() {
+    super.initState();
+    flutterOnfidoPlus = FlutterOnfidoPlusIos();
+  }
+
   onInitialize() {
-    FlutterOnfidoPlusIos channel = FlutterOnfidoPlusIos();
     const settings = FlutterOnfidoSettings(
-      token: 'Token',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
       steps: [
         WelcomeStep(),
         ResidencePermitConfigurationStep(
@@ -34,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         primaryColor: Colors.black,
       )
     );
-    channel.initialize(settings);
+    flutterOnfidoPlus.initialize(settings);
   }
 
   @override

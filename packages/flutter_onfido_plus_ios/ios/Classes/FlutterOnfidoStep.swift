@@ -1,4 +1,5 @@
 import Foundation
+import Onfido
 
 typealias KeyedStep = KeyedDecodingContainer<FlutterOnfidoStep.CodingKeys>
 
@@ -74,6 +75,10 @@ class FlutterOnfidoStep : Codable, Equatable {
     static func == (lhs: FlutterOnfidoStep, rhs: FlutterOnfidoStep) -> Bool {
         return lhs.type == rhs.type && lhs.country == rhs.country && lhs.format == rhs.format
     }
+    
+    func builder(builder: Onfido.OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        fatalError()
+    }
 }
 
 class FlutterOnfidoWithCountryStep : FlutterOnfidoStep {
@@ -112,6 +117,17 @@ class FlutterOnfidoWithCountryAndDocumentStep : FlutterOnfidoStep {
         country = try container.decode(Country.self, forKey: .country)
         format = try container.decode(FlutterOnfidoDocumentFormat.self, forKey: .format)
     }
+    
+    func buildFormat() -> Onfido.DocumentFormat {
+        switch format {
+        case .card:
+            return DocumentFormat.card
+        case .folded:
+            return DocumentFormat.folded
+        case .none:
+            return DocumentFormat.card
+        }
+    }
 }
 
 class WelcomeStep : FlutterOnfidoStep {
@@ -127,6 +143,10 @@ class WelcomeStep : FlutterOnfidoStep {
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
     }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withWelcomeStep()
+    }
 }
 
 class PassportConfigurationStep : FlutterOnfidoStep {
@@ -140,6 +160,10 @@ class PassportConfigurationStep : FlutterOnfidoStep {
     
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
+    }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withDocumentStep(ofType: .passport(config: PassportConfiguration()))
     }
 }
 
@@ -155,6 +179,10 @@ class ResidencePermitConfigurationStep : FlutterOnfidoWithCountryStep {
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
     }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withDocumentStep(ofType: .residencePermit(config: ResidencePermitConfiguration(country: country!.rawValue)), variant: .photo)
+    }
 }
 
 class VisaConfigurationStep : FlutterOnfidoWithCountryStep {
@@ -168,6 +196,10 @@ class VisaConfigurationStep : FlutterOnfidoWithCountryStep {
     
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
+    }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withDocumentStep(ofType: .visa(config: VisaConfiguration(country: country!.rawValue)), variant: .photo)
     }
 }
 
@@ -183,6 +215,10 @@ class WorkPermitConfigurationStep : FlutterOnfidoWithCountryStep {
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
     }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withDocumentStep(ofType: .workPermit(config: WorkPermitConfiguration(country: country!.rawValue)), variant: .photo)
+    }
 }
 
 class GenericConfigurationStep : FlutterOnfidoWithCountryStep {
@@ -196,6 +232,10 @@ class GenericConfigurationStep : FlutterOnfidoWithCountryStep {
     
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
+    }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withDocumentStep(ofType: .generic(config: GenericDocumentConfiguration(country: country!.rawValue)), variant: .photo)
     }
 }
 
@@ -211,6 +251,10 @@ class NationalIdentityConfigurationStep : FlutterOnfidoWithCountryAndDocumentSte
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
     }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withDocumentStep(ofType: .nationalIdentityCard(config: NationalIdentityConfiguration(documentFormat: buildFormat(),country: country!.rawValue)), variant: .photo)
+    }
 }
 
 class DrivingLicenseConfigurationStep : FlutterOnfidoWithCountryAndDocumentStep {
@@ -224,5 +268,9 @@ class DrivingLicenseConfigurationStep : FlutterOnfidoWithCountryAndDocumentStep 
     
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
+    }
+    
+    override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
+        return builder.withDocumentStep(ofType: .drivingLicence(config: DrivingLicenceConfiguration(documentFormat: buildFormat(),country: country!.rawValue)), variant: .photo)
     }
 }

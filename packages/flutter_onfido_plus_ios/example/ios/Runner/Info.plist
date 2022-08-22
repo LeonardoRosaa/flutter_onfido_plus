@@ -45,5 +45,9 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Required for document and facial capture</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Required for video capture</string>
 </dict>
 </plist>
