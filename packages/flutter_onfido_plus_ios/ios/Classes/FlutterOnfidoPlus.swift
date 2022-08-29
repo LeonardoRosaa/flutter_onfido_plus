@@ -37,35 +37,31 @@ class FlutterOnfidoPlus {
                 
                 return Either.Right(data)
             } catch {
-                NSLog("Failure to try from map the FlutterOnfidoSettings \(error)")
-                return Either.Left(FlutterError(code: "settingsFromMapError", message: "Failure on try parse to map the arguments parameters", details: error))
+                let exception = FromMapException(details: error.localizedDescription)
+                return Either.Left(exception.error)
             }
         } else {
-            return Either.Left(FlutterError(code: "argumentsIsNotMapError", message: "The arguments parameters is not a Map type", details: nil))
+            let exception = NotMapException(details: nil)
+            return Either.Left(exception.error)
         }
     }
     
     func makeBuilder(settings: FlutterOnfidoSettings) -> Either<FlutterError, OnfidoConfig> {
         let onfidoConfigBuilder = OnfidoConfig.builder()
         
-        let madeSteps = makeSteps(settings: settings, onfidoConfigBuilder: onfidoConfigBuilder)
+        let madeStepsBuilder = makeSteps(settings: settings, onfidoConfigBuilder: onfidoConfigBuilder)
         
-        switch madeSteps {
+        let executedConfigBuilder = executeConfigBuilder(onfidoConfigBuilder: madeStepsBuilder)
+        
+        switch executedConfigBuilder {
         case .Left(let error):
             return Either.Left(error)
-        case .Right(let onfidoConfigBuilder):
-            let executedConfigBuilder = executeConfigBuilder(onfidoConfigBuilder: onfidoConfigBuilder)
-            
-            switch executedConfigBuilder {
-            case .Left(let error):
-                return Either.Left(error)
-            case .Right(let onfidoConfig):
-                return Either.Right(onfidoConfig)
-            }
+        case .Right(let onfidoConfig):
+            return Either.Right(onfidoConfig)
         }
     }
     
-    func makeSteps(settings: FlutterOnfidoSettings, onfidoConfigBuilder: OnfidoConfigBuilder) -> Either<FlutterError, OnfidoConfigBuilder>  {
+    func makeSteps(settings: FlutterOnfidoSettings, onfidoConfigBuilder: OnfidoConfigBuilder) -> OnfidoConfigBuilder  {
         
         onfidoConfigBuilder.withSDKToken(settings.token)
         
@@ -76,7 +72,7 @@ class FlutterOnfidoPlus {
         
         _ = settings.faceStep?.builder(builder: onfidoConfigBuilder)
         
-        return Either.Right(onfidoConfigBuilder)
+        return onfidoConfigBuilder
     }
     
     func executeConfigBuilder(onfidoConfigBuilder: OnfidoConfigBuilder) -> Either<FlutterError, OnfidoConfig> {
@@ -85,8 +81,8 @@ class FlutterOnfidoPlus {
             
             return Either.Right(onfidoConfig)
         } catch (let error) {
-            NSLog("Failure on try execute builder configurations")
-            return Either.Left(FlutterError(code: "onfidoConfigBuilderError", message: "Failure on try execute builder configurations", details: error))
+            let exception = OnfidoConfigurationException(details: error.localizedDescription)
+            return Either.Left(exception.error)
         }
     }
     
@@ -95,13 +91,15 @@ class FlutterOnfidoPlus {
             let responseHandler: (OnfidoResponse) -> Void = { response in
                 switch response {
                 case .error(let error):
-                    result(FlutterError(code: "responseOnfidoFlowError", message: "Failure on try execute the Onfido Flow", details: error))
+                    let exception = ResponseHandlerException(details: error.localizedDescription)
+                    result(exception.error)
                 case .success(let results):
                     result(results)
                 case .cancel(let reason):
-                    result(FlutterError(code: "cancelOnfidoFlowError", message: "Cancelled Onfido flow", details: reason))
-                default:
-                    result(FlutterError(code: "responseOnfidoFlowError", message: "Failure on try execute the Onfido Flow", details: nil))
+                    let exception = CanceledException(details: reason.rawValue.description)
+                    result(exception.error)
+                @unknown default:
+                    <#fatalError()#>
                 }
             }
             let onfidoFlow = OnfidoFlow(withConfiguration: onfidoConfig).with(responseHandler:responseHandler)
@@ -110,8 +108,8 @@ class FlutterOnfidoPlus {
             
             return Either.Right(controller)
         } catch (let error) {
-            NSLog("Failure on try execute the Onfido Flow")
-            return Either.Left(FlutterError(code: "executeOnfidoFlowError", message: "Failure on try execute the Onfido Flow", details: error))
+            let exception = RunningFlowException(details: error.localizedDescription)
+            return Either.Left(exception.error)
         }
     }
 }

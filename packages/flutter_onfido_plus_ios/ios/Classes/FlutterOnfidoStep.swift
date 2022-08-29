@@ -97,9 +97,13 @@ class FlutterOnfidoWithCountryStep : FlutterOnfidoStep {
         try super.init(container: container)
         country = try container.decode(Country?.self, forKey: .country)
     }
+    
+    var upperCountry: String {
+        return country!.rawValue.uppercased()
+    }
 }
 
-class FlutterOnfidoWithCountryAndDocumentStep : FlutterOnfidoStep {
+class FlutterOnfidoWithCountryAndDocumentStep : FlutterOnfidoWithCountryStep {
     
     override init(type: FlutterOnfidoSteps, country: Country? = nil, format: FlutterOnfidoDocumentFormat? = nil) {
         super.init(type: type, country: country, format: format)
@@ -181,7 +185,7 @@ class ResidencePermitConfigurationStep : FlutterOnfidoWithCountryStep {
     }
     
     override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
-        return builder.withDocumentStep(ofType: .residencePermit(config: ResidencePermitConfiguration(country: country!.rawValue)), variant: .photo)
+        return builder.withDocumentStep(ofType: .residencePermit(config: ResidencePermitConfiguration(country: upperCountry)), variant: .photo)
     }
 }
 
@@ -199,7 +203,7 @@ class VisaConfigurationStep : FlutterOnfidoWithCountryStep {
     }
     
     override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
-        return builder.withDocumentStep(ofType: .visa(config: VisaConfiguration(country: country!.rawValue)), variant: .photo)
+        return builder.withDocumentStep(ofType: .visa(config: VisaConfiguration(country: upperCountry)), variant: .photo)
     }
 }
 
@@ -217,7 +221,7 @@ class WorkPermitConfigurationStep : FlutterOnfidoWithCountryStep {
     }
     
     override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
-        return builder.withDocumentStep(ofType: .workPermit(config: WorkPermitConfiguration(country: country!.rawValue)), variant: .photo)
+        return builder.withDocumentStep(ofType: .workPermit(config: WorkPermitConfiguration(country: upperCountry)), variant: .photo)
     }
 }
 
@@ -235,7 +239,7 @@ class GenericConfigurationStep : FlutterOnfidoWithCountryStep {
     }
     
     override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
-        return builder.withDocumentStep(ofType: .generic(config: GenericDocumentConfiguration(country: country!.rawValue)), variant: .photo)
+        return builder.withDocumentStep(ofType: .generic(config: GenericDocumentConfiguration(country: upperCountry)), variant: .photo)
     }
 }
 
@@ -253,7 +257,7 @@ class NationalIdentityConfigurationStep : FlutterOnfidoWithCountryAndDocumentSte
     }
     
     override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
-        return builder.withDocumentStep(ofType: .nationalIdentityCard(config: NationalIdentityConfiguration(documentFormat: buildFormat(),country: country!.rawValue)), variant: .photo)
+        return builder.withDocumentStep(ofType: .nationalIdentityCard(config: NationalIdentityConfiguration(documentFormat: buildFormat(),country: upperCountry)), variant: .photo)
     }
 }
 
@@ -271,6 +275,6 @@ class DrivingLicenseConfigurationStep : FlutterOnfidoWithCountryAndDocumentStep 
     }
     
     override func builder(builder: OnfidoConfigBuilder) -> Onfido.OnfidoConfigBuilder {
-        return builder.withDocumentStep(ofType: .drivingLicence(config: DrivingLicenceConfiguration(documentFormat: buildFormat(),country: country!.rawValue)), variant: .photo)
+        return builder.withDocumentStep(ofType: .drivingLicence(config: DrivingLicenceConfiguration(documentFormat: buildFormat(),country: upperCountry)), variant: .photo)
     }
 }
