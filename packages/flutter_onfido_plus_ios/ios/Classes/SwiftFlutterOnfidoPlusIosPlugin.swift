@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import Onfido
 
 public class SwiftFlutterOnfidoPlusIosPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
@@ -9,10 +10,11 @@ public class SwiftFlutterOnfidoPlusIosPlugin: NSObject, FlutterPlugin {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if let arguments = call.arguments as? Map {
-            let onfido = FlutterOnfidoPlus()
-            
-            onfido.builder(data: arguments, result: result)
+        func onfidoConfigBuild() -> Onfido.OnfidoConfigBuilder {
+            return OnfidoConfig.builder()
         }
+        let onfido = FlutterOnfidoPlus(onfidoConfigBuild: onfidoConfigBuild)
+        
+        onfido.builder(data: call.arguments as Any, result: result)
     }
 }

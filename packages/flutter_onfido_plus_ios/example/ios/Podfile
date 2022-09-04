@@ -37,8 +37,15 @@ target 'Runner' do
   end
 end
 
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+    
+    installer.generated_projects.each do |project|
+          project.build_configurations.each do |configuration|
+              configuration.build_settings["ENABLE_TESTABILITY"] = "YES"
+          end
+      end
   end
 end

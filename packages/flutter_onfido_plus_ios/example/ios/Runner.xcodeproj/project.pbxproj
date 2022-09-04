@@ -14,6 +14,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		A739824628BCCDB2009D3382 /* FlutterOnfidoPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A739824528BCCDB2009D3382 /* FlutterOnfidoPlus.swift */; };
 		A77D094928AA534C0016E0BF /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D094828AA534C0016E0BF /* RunnerTests.swift */; };
 		A77D095128AA53820016E0BF /* FlutterOnfidoSettingsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D095028AA53820016E0BF /* FlutterOnfidoSettingsTest.swift */; };
 		B075B954F3B5FBA0EBE4130F /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288D267D4B57753BFF3DB7D8 /* Pods_RunnerTests.framework */; };
@@ -63,6 +64,7 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A07E309A8CBA719BA894D47 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		A739824528BCCDB2009D3382 /* FlutterOnfidoPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterOnfidoPlus.swift; sourceTree = "<group>"; };
 		A77D094628AA534C0016E0BF /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A77D094828AA534C0016E0BF /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		A77D095028AA53820016E0BF /* FlutterOnfidoSettingsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterOnfidoSettingsTest.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		A77D094728AA534C0016E0BF /* RunnerTests */ = {
 			isa = PBXGroup;
 			children = (
+				A739824528BCCDB2009D3382 /* FlutterOnfidoPlus.swift */,
 				A77D095028AA53820016E0BF /* FlutterOnfidoSettingsTest.swift */,
 				A77D094828AA534C0016E0BF /* RunnerTests.swift */,
 			);
@@ -200,6 +203,7 @@
 				A77D094228AA534C0016E0BF /* Sources */,
 				A77D094328AA534C0016E0BF /* Frameworks */,
 				A77D094428AA534C0016E0BF /* Resources */,
+				C216667BE8E8CDE29608FD33 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -361,6 +365,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C216667BE8E8CDE29608FD33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RunnerTests/Pods-RunnerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RunnerTests/Pods-RunnerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RunnerTests/Pods-RunnerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -377,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A739824628BCCDB2009D3382 /* FlutterOnfidoPlus.swift in Sources */,
 				A77D095128AA53820016E0BF /* FlutterOnfidoSettingsTest.swift in Sources */,
 				A77D094928AA534C0016E0BF /* RunnerTests.swift in Sources */,
 			);
@@ -445,6 +467,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -473,6 +496,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = VYF8RJ3WP3;
 				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -575,6 +599,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -631,6 +656,7 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = VYF8RJ3WP3;
 				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

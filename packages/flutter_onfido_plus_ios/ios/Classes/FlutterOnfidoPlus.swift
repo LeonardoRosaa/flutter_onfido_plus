@@ -2,7 +2,15 @@ import Foundation
 import Flutter
 import Onfido
 
+typealias OnfidoConfigBuild = () -> Onfido.OnfidoConfigBuilder
+
 class FlutterOnfidoPlus {
+        
+    final let onfidoConfigBuild: OnfidoConfigBuild
+    
+    init(onfidoConfigBuild: @escaping OnfidoConfigBuild) {
+        self.onfidoConfigBuild = onfidoConfigBuild
+    }
     
     func builder(data: Any, result: @escaping FlutterResult) -> Void {
         
@@ -12,7 +20,7 @@ class FlutterOnfidoPlus {
         case .Left(let error):
             result(error)
         case .Right(let settings):
-            let onfidoConfig = makeBuilder(settings: settings)
+            let onfidoConfig = buildTheOnfidoConfig(settings: settings)
             
             switch onfidoConfig {
             case .Left(let error):
@@ -46,7 +54,9 @@ class FlutterOnfidoPlus {
         }
     }
     
-    func makeBuilder(settings: FlutterOnfidoSettings) -> Either<FlutterError, OnfidoConfig> {
+    /// Create Onfido configurations according to settings in parameters.
+    /// This includes setting up the steps, SDK token, and other stuff necessary to Onfido work.
+    func buildTheOnfidoConfig(settings: FlutterOnfidoSettings) -> Either<FlutterError, OnfidoConfig> {
         let onfidoConfigBuilder = OnfidoConfig.builder()
         
         let madeStepsBuilder = makeSteps(settings: settings, onfidoConfigBuilder: onfidoConfigBuilder)
@@ -99,7 +109,7 @@ class FlutterOnfidoPlus {
                     let exception = CanceledException(details: reason.rawValue.description)
                     result(exception.error)
                 @unknown default:
-                    <#fatalError()#>
+                    result(ResponseHandlerException(details: nil))
                 }
             }
             let onfidoFlow = OnfidoFlow(withConfiguration: onfidoConfig).with(responseHandler:responseHandler)
