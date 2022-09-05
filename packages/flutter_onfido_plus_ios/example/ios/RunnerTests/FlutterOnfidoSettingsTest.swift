@@ -31,6 +31,14 @@ class FlutterOnfidoSettingsTest: XCTestCase {
             "type": "video",
             "intro": false
         ]
+        data["appearence"] = [
+            "primaryColor": [
+                "red": 0,
+                "blue": 0,
+                "green": 0,
+                "alpha": 0
+            ]
+        ]
         
         let settings = try FlutterOnfidoSettings.fromMap(data: data)
         let compare =  FlutterOnfidoSettings(
@@ -40,7 +48,10 @@ class FlutterOnfidoSettingsTest: XCTestCase {
                 WorkPermitConfigurationStep(country: .afg),
                 DrivingLicenseConfigurationStep(country: .usa, format: .card)
             ],
-            faceStep: FlutterOnfidoFaceStep(type: .video)
+            faceStep: FlutterOnfidoFaceStep(type: .video),
+            appearence: FlutterOnfidoAppearence(
+                primaryColor: Color(red: 0, blue: 0, green: 0, alpha: 0), primaryTitleColor: nil, primaryBackgroundPressedColor: nil, secondaryBackgroundPressedColor: nil, borderCornerRadius: nil, fontRegular: nil, fontBold: nil, supportDarkMode: nil
+            )
         )
         
         XCTAssertEqual(settings, compare, "The settings classes should be equals")

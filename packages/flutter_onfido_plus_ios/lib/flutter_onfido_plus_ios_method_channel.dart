@@ -12,6 +12,7 @@ class FlutterOnfidoPlusIos extends FlutterOnfidoPlusPlatform {
 
   @override
   Future initialize(FlutterOnfidoSettings settings) {
+    print(settings.toMap());
     return _channel.invokeMethod(
       'initialize',
       settings.toMap(),

@@ -10,3 +10,4 @@ export 'src/flutter_onfido_settings.dart';
 export 'src/flutter_onfido_step.dart';
 export 'src/flutter_onfido_steps.dart';
 export 'src/method_channels/method_channels.dart';
+export 'src/color_extension.dart';

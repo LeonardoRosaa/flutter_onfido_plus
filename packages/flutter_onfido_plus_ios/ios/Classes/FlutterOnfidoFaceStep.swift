@@ -1,12 +1,12 @@
 import Foundation
 import Onfido
 
-public enum FlutterOnfidoFaceSteps : String, Codable {
+enum FlutterOnfidoFaceSteps : String, Codable {
     case video,
          photo
 }
 
-public class FlutterOnfidoFaceStep : Codable, Equatable {
+class FlutterOnfidoFaceStep : Codable, Equatable {
     final let type: FlutterOnfidoFaceSteps
     
     final let intro: Bool
@@ -16,7 +16,7 @@ public class FlutterOnfidoFaceStep : Codable, Equatable {
         self.intro = intro
     }
     
-    public static func == (lhs: FlutterOnfidoFaceStep, rhs: FlutterOnfidoFaceStep) -> Bool {
+    static func == (lhs: FlutterOnfidoFaceStep, rhs: FlutterOnfidoFaceStep) -> Bool {
         return lhs.type == rhs.type && lhs.intro == rhs.intro
     }
     

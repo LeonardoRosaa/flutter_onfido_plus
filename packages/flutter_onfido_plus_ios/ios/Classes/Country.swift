@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Country : String, Codable {
+enum Country : String, Codable {
   case afg,
   alb,
   dza,

@@ -84,7 +84,7 @@ class FlutterOnfidoStep : Codable, Equatable {
 class FlutterOnfidoWithCountryStep : FlutterOnfidoStep {
     
     override init(type: FlutterOnfidoSteps, country: Country? = nil, format: FlutterOnfidoDocumentFormat? = nil) {
-        super.init(type: type, country: country)
+        super.init(type: type, country: country, format: format)
     }
     
     required init(from decoder: Decoder) throws {

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:flutter_onfido_plus_platform_interfaces/flutter_onfido_plus_platform_interfaces.dart';
 class FlutterOnfidoAppearence extends Equatable {
   
   const FlutterOnfidoAppearence({
@@ -32,10 +32,10 @@ class FlutterOnfidoAppearence extends Equatable {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'primaryColor': primaryColor?.value,
-      'primaryTitleColor': primaryTitleColor?.value,
-      'primaryBackgroundPressedColor': primaryBackgroundPressedColor?.value,
-      'secondaryBackgroundPressedColor': secondaryBackgroundPressedColor?.value,
+      'primaryColor': primaryColor?.toMap(),
+      'primaryTitleColor': primaryTitleColor?.toMap(),
+      'primaryBackgroundPressedColor': primaryBackgroundPressedColor?.toMap(),
+      'secondaryBackgroundPressedColor': secondaryBackgroundPressedColor?.toMap(),
       'borderCornerRadius': borderCornerRadius,
       'fontRegular': fontRegular,
       'fontBold': fontBold,

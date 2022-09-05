@@ -8,7 +8,6 @@ PODS:
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_onfido_plus_ios (from `.symlinks/plugins/flutter_onfido_plus_ios/ios`)
-  - Onfido (= 25.1.1)
 
 SPEC REPOS:
   trunk:
@@ -25,6 +24,6 @@ SPEC CHECKSUMS:
   flutter_onfido_plus_ios: 78f4b0f531bee8753cf3cd96ce5700316cf73604
   Onfido: 7b3fe080dc36420798d63a2a3b858718538aecdd
 
-PODFILE CHECKSUM: 156a099bfad2920a3bba6f1ab3fd12cfb570bcba
+PODFILE CHECKSUM: 8ac63ee67db3baec633d87e5daba424280e204b2
 
 COCOAPODS: 1.11.3
