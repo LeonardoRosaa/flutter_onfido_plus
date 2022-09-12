@@ -11,7 +11,7 @@ jobs:
     name: Swift validation
     runs-on: macos-latest
     steps:
-      - uses: fwal/step-swift@v1
+      - uses: swift-actions/setup-swift@v1
         with:
           swift-version: ${{ env.swift_version }}
       - uses: actions/checkout@v3
