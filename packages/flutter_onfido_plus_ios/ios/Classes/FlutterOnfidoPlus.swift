@@ -80,6 +80,10 @@ class FlutterOnfidoPlus {
             _ = step.builder(builder: onfidoConfigBuilder)
         }
         
+        if settings.appearence != nil {
+            onfidoConfigBuilder.withAppearance(settings.appearence!.appearence)
+        }
+        
         _ = settings.faceStep?.builder(builder: onfidoConfigBuilder)
         
         return onfidoConfigBuilder

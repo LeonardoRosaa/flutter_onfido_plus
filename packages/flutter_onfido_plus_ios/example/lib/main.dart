@@ -40,6 +40,10 @@ class _MyAppState extends State<MyApp> {
       faceStep: VideoFaceStep(intro: true),
       appearence: FlutterOnfidoAppearence(
         primaryColor: Colors.black,
+        primaryBackgroundPressedColor: Colors.black,
+        primaryTitleColor: Colors.black,
+        secondaryBackgroundPressedColor: Colors.black,
+        supportDarkMode: false,
       )
     );
     flutterOnfidoPlus.initialize(settings);

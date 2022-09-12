@@ -37,7 +37,27 @@ class FlutterOnfidoSettingsTest: XCTestCase {
                 "blue": 0,
                 "green": 0,
                 "alpha": 0
-            ]
+            ],
+            "primaryTitleColor": [
+                "red": 0,
+                "blue": 0,
+                "green": 0,
+                "alpha": 0
+            ],
+            "primaryBackgroundPressedColor": [
+                "red": 0,
+                "blue": 0,
+                "green": 0,
+                "alpha": 0
+            ],
+            "secondaryBackgroundPressedColor": [
+                "red": 0,
+                "blue": 0,
+                "green": 0,
+                "alpha": 0
+            ],
+            "buttonCornerRadius": 10.0,
+            "supportDarkMode": true
         ]
         
         let settings = try FlutterOnfidoSettings.fromMap(data: data)
@@ -50,7 +70,15 @@ class FlutterOnfidoSettingsTest: XCTestCase {
             ],
             faceStep: FlutterOnfidoFaceStep(type: .video),
             appearence: FlutterOnfidoAppearence(
-                primaryColor: Color(red: 0, blue: 0, green: 0, alpha: 0), primaryTitleColor: nil, primaryBackgroundPressedColor: nil, secondaryBackgroundPressedColor: nil, borderCornerRadius: nil, fontRegular: nil, fontBold: nil, supportDarkMode: nil
+                primaryColor: Color(red: 0, blue: 0, green: 0, alpha: 0),
+                primaryTitleColor: Color(red: 0, blue: 0, green: 0, alpha: 0),
+                secondaryTitleColor: nil,
+                primaryBackgroundPressedColor: Color(red: 0, blue: 0, green: 0, alpha: 0),
+                secondaryBackgroundPressedColor: Color(red: 0, blue: 0, green: 0, alpha: 0),
+                buttonCornerRadius: 10.0,
+                fontRegular: nil,
+                fontBold: nil,
+                supportDarkMode: true
             )
         )
         

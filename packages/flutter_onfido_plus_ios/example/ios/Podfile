@@ -33,6 +33,7 @@ target 'Runner' do
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do
+    pod 'Onfido'
     inherit! :search_paths
   end
 end

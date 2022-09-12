@@ -4,39 +4,43 @@ import 'package:flutter_onfido_plus_platform_interfaces/flutter_onfido_plus_plat
 class FlutterOnfidoAppearence extends Equatable {
   
   const FlutterOnfidoAppearence({
-    this.primaryColor,
-    this.primaryTitleColor,
-    this.primaryBackgroundPressedColor,
-    this.secondaryBackgroundPressedColor,
-    this.borderCornerRadius,
+    required this.primaryColor,
+    required this.primaryTitleColor,
+    required this.primaryBackgroundPressedColor,
+    required this.secondaryBackgroundPressedColor,
+    required this.supportDarkMode,
+    this.secondaryTitleColor,
+    this.buttonCornerRadius,
     this.fontRegular,
     this.fontBold,
-    this.supportDarkMode,
   });
 
-  final Color? primaryColor;
+  final Color primaryColor;
 
-  final Color? primaryTitleColor;
+  final Color primaryTitleColor;
 
-  final Color? primaryBackgroundPressedColor;
+  final Color? secondaryTitleColor;
 
-  final Color? secondaryBackgroundPressedColor;
+  final Color primaryBackgroundPressedColor;
 
-  final int? borderCornerRadius;
+  final Color secondaryBackgroundPressedColor;
+
+  final double? buttonCornerRadius;
 
   final String? fontRegular;
 
   final String? fontBold;
 
-  final bool? supportDarkMode;
+  final bool supportDarkMode;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'primaryColor': primaryColor?.toMap(),
-      'primaryTitleColor': primaryTitleColor?.toMap(),
-      'primaryBackgroundPressedColor': primaryBackgroundPressedColor?.toMap(),
-      'secondaryBackgroundPressedColor': secondaryBackgroundPressedColor?.toMap(),
-      'borderCornerRadius': borderCornerRadius,
+      'primaryColor': primaryColor.toMap(),
+      'primaryTitleColor': primaryTitleColor.toMap(),
+      'secondaryTitleColor': secondaryTitleColor?.toMap(),
+      'primaryBackgroundPressedColor': primaryBackgroundPressedColor.toMap(),
+      'secondaryBackgroundPressedColor': secondaryBackgroundPressedColor.toMap(),
+      'buttonCornerRadius': buttonCornerRadius,
       'fontRegular': fontRegular,
       'fontBold': fontBold,
       'supportDarkMode': supportDarkMode,
@@ -49,7 +53,7 @@ class FlutterOnfidoAppearence extends Equatable {
       primaryTitleColor,
       primaryBackgroundPressedColor,
       secondaryBackgroundPressedColor,
-      borderCornerRadius,
+      buttonCornerRadius,
       fontRegular,
       fontBold,
       supportDarkMode,

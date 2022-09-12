@@ -7,11 +7,11 @@
 
 import XCTest
 @testable import flutter_onfido_plus_ios
-@testable import Onfido
+//@testable import Onfido
 
-class MockBuilder : OnfidoConfigBuilder {
-    
-}
+//class MockBuilder : OnfidoConfigBuilder {
+//    
+//}
 
 class FlutterOnfidoPlusTest: XCTestCase {
     
@@ -38,16 +38,16 @@ class FlutterOnfidoPlusTest: XCTestCase {
             "intro": false
         ]
         
-        let settings = try FlutterOnfidoSettings.fromMap(data: data)
-        
-        func onfidoConfigBuild() -> OnfidoConfigBuilder {
-            return OnfidoConfigBuilder()
-        }
-        let flutterOnfidoPlus = FlutterOnfidoPlus(
-            onfidoConfigBuild: onfidoConfigBuild
-        )
-        
-        flutterOnfidoPlus.buildTheOnfidoConfig(settings: settings)
+//        let settings = try FlutterOnfidoSettings.fromMap(data: data)
+//        
+//        func onfidoConfigBuild() -> OnfidoConfigBuilder {
+//            return OnfidoConfigBuilder()
+//        }
+//        let flutterOnfidoPlus = FlutterOnfidoPlus(
+//            onfidoConfigBuild: onfidoConfigBuild
+//        )
+//        
+//        flutterOnfidoPlus.buildTheOnfidoConfig(settings: settings)
     }
     
 }
