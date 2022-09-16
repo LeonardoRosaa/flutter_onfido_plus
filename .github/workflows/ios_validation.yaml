@@ -1,9 +1,10 @@
-name: swift_validation
+name: iOS validation
 
 on: [push, pull_request]
 
 env:
   swift_version: 5.5
+  xcode-version: latest
   working_directory: ./packages/flutter_onfido_plus_ios/example/ios
 
 jobs:
@@ -11,10 +12,15 @@ jobs:
     name: Swift validation
     runs-on: macos-latest
     steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ env.xcode-version }}
       - uses: swift-actions/setup-swift@v1
         with:
           swift-version: ${{ env.swift_version }}
       - uses: actions/checkout@v3
+      - name: Xcode tests
+        run: xcodebuild -project Runner.xcodeproj -scheme Runner -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=15.5,name=iPhone 7' test
       - name: Build
         run: swift build
         working-directory: ${{ env.working_directory }}
