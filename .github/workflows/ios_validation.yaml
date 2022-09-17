@@ -20,7 +20,7 @@ jobs:
           swift-version: ${{ env.swift_version }}
       - uses: actions/checkout@v3
       - name: Xcode tests
-        run: xcodebuild -project Runner.xcodeproj -scheme Runner -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=15.5,name=iPhone 8' test
+        run: xcodebuild -project Runner.xcodeproj -scheme Runner -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=15.2,name=iPhone 8' test
         working-directory: ${{ env.working_directory }}
       - name: Build
         run: swift build
