@@ -7,6 +7,7 @@ env:
   xcode-version: latest
   working_directory: ./packages/flutter_onfido_plus_ios/example/ios
   working-directory-example: ./packages/flutter_onfido_plus_ios/example
+  FLUTTER_HOME: ./packages/flutter_onfido_plus_ios/example
 jobs:
   build:
     name: Swift validation
