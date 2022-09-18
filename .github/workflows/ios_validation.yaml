@@ -6,7 +6,7 @@ env:
   swift_version: 5.5
   xcode-version: latest
   working_directory: ./packages/flutter_onfido_plus_ios/example/ios
-
+  working-directory-example: ./packages/flutter_onfido_plus_ios/example
 jobs:
   build:
     name: Swift validation
@@ -18,7 +18,27 @@ jobs:
       - uses: swift-actions/setup-swift@v1
         with:
           swift-version: ${{ env.swift_version }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Cache flutter
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.FLUTTER_HOME }}/bin
+          key: flutter-directory-${{ runner.os }}-${{ env.FLUTTER_VERSION }}
+          restore-keys: |
+            flutter-directory-
+      - name: Cache pubspec dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ env.FLUTTER_HOME }}/.pub-cache
+          key: build-pubspec-${{ env.FLUTTER_VERSION }}-${{ hashFiles('**/pubspec.lock') }}
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: working-directory-example
       - name: Install dependecies
         run: pod install
         working-directory: ${{ env.working_directory }}
