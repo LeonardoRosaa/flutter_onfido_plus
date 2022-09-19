@@ -7,19 +7,18 @@ env:
   xcode-version: latest
   working_directory: ./packages/flutter_onfido_plus_ios/example/ios
   working-directory-example: ./packages/flutter_onfido_plus_ios/example
-  FLUTTER_HOME: ./packages/flutter_onfido_plus_ios/example
 jobs:
   build:
     name: Swift validation
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: ${{ env.xcode-version }}
       - uses: swift-actions/setup-swift@v1
         with:
           swift-version: ${{ env.swift_version }}
-      - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
