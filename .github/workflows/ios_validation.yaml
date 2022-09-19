@@ -38,7 +38,7 @@ jobs:
           key: build-pubspec-${{ env.FLUTTER_VERSION }}-${{ hashFiles('**/pubspec.lock') }}
       - name: Install dependencies
         run: flutter pub get
-        working-directory: working-directory-example
+        working-directory: ${{ env.working-directory-example }}
       - name: Install dependecies
         run: pod install
         working-directory: ${{ env.working_directory }}
