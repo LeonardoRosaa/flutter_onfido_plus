@@ -52,7 +52,7 @@ Map<String, dynamic> _$OnfidoFlowStepsToJson(OnfidoFlowSteps instance) {
   }
 
   writeNotNull('welcome', instance.welcome);
-  writeNotNull('captureDocument', instance.captureDocument.toJson());
+  writeNotNull('captureDocument', instance.captureDocument?.toJson());
   writeNotNull('captureFace', instance.captureFace.toJson());
   return val;
 }
